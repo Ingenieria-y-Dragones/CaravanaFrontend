@@ -1,0 +1,90 @@
+<!-- Fondo específico para esta pantalla -->
+<div class="background"></div>
+
+<!-- Header y título -->
+<app-header></app-header>
+
+<div class="title-container">
+  <h1 class="title">
+    <span class="title-top">Castle of </span><br />
+    <span class="title-bottom">{{ ciudadNombre }}</span>
+  </h1>
+</div>
+
+<div class="panels-container">
+
+  <!-- Panel de Productos para comprar -->
+  <div class="panel">
+    <div class="panel-header" (click)="toggle('products')">
+      <h3 class="panel-title">Products available for purchase at the castle</h3>
+      <h2 class="panel-subtitle">Products</h2>
+    </div>
+    <div class="panel-items" *ngIf="panels.products">
+      <div class="item" *ngFor="let producto of productos">
+        <div class="item-info">
+          <span class="star">★</span>
+          <div class="item-details">
+            <span class="item-name">{{ producto.producto.nombre }}</span>
+            <span class="item-desc">Stock: {{ producto.cantidad }} units</span>
+          </div>
+        </div>
+        <span class="price purchase">
+          ${{ calcularPrecioCompra(producto) | number:'1.2-2' }}
+        </span>
+        <button (click)="comprarProducto(producto)"
+                [disabled]="estado.dinero < calcularPrecioCompra(producto) || producto.cantidad <= 0"
+                class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de Servicios para comprar -->
+  <div class="panel">
+    <div class="panel-header" (click)="toggle('services')">
+      <h3 class="panel-title">Services available for purchase at the castle</h3>
+      <h2 class="panel-subtitle">Services</h2>
+    </div>
+    <div class="panel-items" *ngIf="panels.services">
+      <div class="item" *ngFor="let servicio of servicios">
+        <div class="item-info">
+          <span class="star">★</span>
+          <div class="item-details">
+            <span class="item-name">{{ servicio.nombreServicio }}</span>
+            <span class="item-desc">Premium service</span>
+          </div>
+        </div>
+        <span class="price purchase">
+          ${{ servicio.precio | number:'1.2-2' }}
+        </span>
+        <button (click)="comprarServicio(servicio)"
+                [disabled]="estado.dinero < servicio.precio"
+                class="btn-comprar">Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de Inventario para vender -->
+  <div class="panel">
+    <div class="panel-header" (click)="toggle('inventory')">
+      <h3 class="panel-title">The products available in your inventory to sell</h3>
+      <h2 class="panel-subtitle">Product</h2>
+    </div>
+    <div class="panel-items" *ngIf="panels.inventory">
+      <div class="item" *ngFor="let producto of inventarioCaravana">
+        <div class="item-info">
+          <span class="star">★</span>
+          <div class="item-details">
+            <span class="item-name">{{ producto.producto.nombre }}</span>
+            <span class="item-desc">Cantidad: {{ producto.cantidad }}</span>
+          </div>
+        </div>
+        <span class="price sell">
+          ${{ calcularPrecioVenta(producto) | number:'1.2-2' }}
+        </span>
+        <button (click)="venderProducto(producto)"
+                [disabled]="producto.cantidad <= 0"
+                class="btn-vender">Vender</button>
+      </div>
+    </div>
+  </div>
+</div>

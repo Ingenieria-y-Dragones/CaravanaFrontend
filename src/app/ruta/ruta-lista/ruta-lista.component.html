@@ -1,0 +1,98 @@
+<div>
+  @if (parametroCaravana) {
+    <div class="dashboard-container">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="left-header">
+          <div class="logo-container">
+            <img src="/dragon.png" alt="Dragon" class="dragon-logo">
+          </div>
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Tiempo:</span>
+              <span class="stat-value">{{ parametroCaravana.tiempoTranscurrido }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Vida:</span>
+              <span class="stat-value">{{ parametroCaravana.puntosVida }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Dinero:</span>
+              <span class="stat-value">{{ parametroCaravana.dinero }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="header-buttons">
+          <button (click)="comerciar()" class="header-button">Comerciar</button>
+          <button (click)="rutas()" class="header-button">Viajar</button>
+          <button (click)="mapa()" class="header-button">Mapa</button>
+          <button (click)="back()" class="header-button exit-button">Salir</button>
+        </div>
+      </header>
+
+      <!-- Main Content - Routes List -->
+      <main class="routes-main">
+        <div class="routes-container">
+          <h2 class="routes-title">Rutas Disponibles</h2>
+
+          @if (parametroRutas && parametroRutas.length > 0) {
+            <div class="routes-list">
+              @for (rutaDestino of parametroRutas; track $index) {
+                <div class="route-card">
+                  <div class="route-header">
+                    <h3 class="route-name">{{ rutaDestino.ruta.nombre }}</h3>
+                    <div class="route-danger-badge">{{ rutaDestino.ruta.peligro }}</div>
+                  </div>
+
+                  <div class="route-details">
+                    <div class="route-detail">
+                      <div class="detail-icon">🛣️</div>
+                      <div class="detail-content">
+                        <span class="detail-label">Distancia:</span>
+                        <span class="detail-value">{{ rutaDestino.ruta.distancia }} km</span>
+                      </div>
+                    </div>
+
+                    <div class="route-detail">
+                      <div class="detail-icon">💥</div>
+                      <div class="detail-content">
+                        <span class="detail-label">Daño Potencial:</span>
+                        <span class="detail-value">{{ rutaDestino.ruta.danio }}%</span>
+                      </div>
+                    </div>
+
+                    <!-- Ciudad de Destino -->
+                    <div class="route-detail city-detail">
+                      <div class="detail-icon">🏰</div>
+                      <div class="detail-content">
+                        <span class="detail-label">Ciudad Destino:</span>
+                        <span class="detail-value">{{ rutaDestino.ciudadDestino.nombre }}</span>
+                      </div>
+                    </div>
+
+                    <div class="route-detail city-detail">
+                      <div class="detail-icon">💰</div>
+                      <div class="detail-content">
+                        <span class="detail-label">Impuesto:</span>
+                        <span class="detail-value">{{ rutaDestino.ciudadDestino.impuesto }}%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="route-actions">
+                    <button class="route-button travel-button" (click)="viajar(rutaDestino)">Viajar</button>
+                  </div>
+                </div>
+              }
+            </div>
+          } @else {
+            <div class="no-routes">
+              <div class="no-routes-icon">🗺️</div>
+              <p class="no-routes-text">No hay rutas disponibles en este momento.</p>
+            </div>
+          }
+        </div>
+      </main>
+    </div>
+  }
+</div>

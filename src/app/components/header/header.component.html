@@ -1,0 +1,17 @@
+<header class="header">
+  <img src="dragon.png" alt="Dragon Logo" class="logo" />
+
+  <div class="stats">
+    <span class="time">{{ tiempoRestante }}</span>
+    <span class="hp">HP: {{ estado.salud ?? 0 }}</span>
+    <span class="money">MO: {{ estado.dinero ?? 0 }}</span>
+  </div>
+
+  <nav class="nav">
+    <button routerLink="/map" class="nav-btn">Map</button>
+    <button routerLink="/ciudad" class="nav-btn active">Castle</button>
+    <button routerLink="/routes" class="nav-btn">Routes</button>
+    <button routerLink="/login" class="nav-btn sign">Sign in</button>
+    <button routerLink="/register" class="nav-btn register">Register</button>
+  </nav>
+</header>

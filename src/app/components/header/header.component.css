@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #f5f0e1;
+  color: #0a1f3c;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.stats {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: -60px;
+}
+
+.time { color: #4a0000; }
+.hp   { color: #0a1f3c; }
+.money{ color: #8b0000; }
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.nav-btn.active {
+  background-color: #8b0000;
+  color: #fff;
+}
+
+.nav-btn.sign {
+  background-color: #8b0000;
+  color: #fff;
+}
+
+.nav-btn.register {
+  background-color: #222;
+  color: #fff;
+}

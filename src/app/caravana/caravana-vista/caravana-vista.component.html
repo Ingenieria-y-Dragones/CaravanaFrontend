@@ -1,0 +1,163 @@
+<div>
+  @if (parametroCaravana) {
+    <div class="dashboard-container">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="left-header">
+          <div class="logo-container">
+            <img src="/dragon.png" alt="Dragon" class="dragon-logo">
+          </div>
+          <div class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Tiempo:</span>
+              <span class="stat-value">{{ parametroCaravana.tiempoTranscurrido }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Vida:</span>
+              <span class="stat-value">{{ parametroCaravana.puntosVida }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Dinero:</span>
+              <span class="stat-value">{{ parametroCaravana.dinero }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="header-buttons">
+          <button (click)="comerciar()" class="header-button">Comerciar</button>
+          <button (click)="rutas()" class="header-button">Viajar</button>
+          <button (click)="mapa()" class="header-button">Mapa</button>
+          <button (click)="back()" class="header-button exit-button">Salir</button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <!-- Left Column - Player Stats -->
+        <div class="player-stats">
+          <h2 class="stats-title">Información de la Caravana</h2>
+
+          <div class="stats-group">
+            <h3 class="group-title">Información General</h3>
+
+            <div class="stat-card">
+              <div class="stat-icon">🚃</div>
+              <div class="stat-content">
+                <span class="stat-label">Caravana:</span>
+                <span class="stat-value">{{ parametroCaravana.nombre }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- City Information Section with correct properties -->
+          @if (parametroCiudad) {
+            <div class="stats-group city-group">
+              <h3 class="group-title">Ciudad Actual</h3>
+              <div class="stat-card city-card">
+                <div class="stat-icon">🏰</div>
+                <div class="stat-content">
+                  <span class="stat-label">Nombre:</span>
+                  <span class="stat-value">{{ parametroCiudad.nombre }}</span>
+                </div>
+              </div>
+
+              <div class="stat-card city-card">
+                <div class="stat-icon">💲</div>
+                <div class="stat-content">
+                  <span class="stat-label">Impuesto:</span>
+                  <span class="stat-value">{{ parametroCiudad.impuesto }}%</span>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- List of players using parametroJugadores with correct properties -->
+          <div class="stats-group">
+            <h3 class="group-title">Lista de Jugadores</h3>
+
+            @if (parametroJugadores && parametroJugadores.length > 0) {
+              @for (jugador of parametroJugadores; track $index) {
+                <div class="stat-card player-card">
+                  <div class="stat-icon">👥</div>
+                  <div class="stat-content">
+                    <span class="stat-value">{{ jugador.nombre }}</span>
+                    <div class="player-details">
+                      <span class="player-detail">
+                        <small>Tipo: {{ jugador.tipo }}</small>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              }
+            } @else {
+              <div class="stat-card">
+                <div class="stat-icon">ℹ️</div>
+                <div class="stat-content">
+                  <span class="stat-value">No hay jugadores en la caravana</span>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="stats-group">
+            <h3 class="group-title">Atributos</h3>
+            <div class="stat-card">
+              <div class="stat-icon">⚡</div>
+              <div class="stat-content">
+                <span class="stat-label">Velocidad:</span>
+                <span class="stat-value">{{ parametroCaravana.velocidad }}</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">📦</div>
+              <div class="stat-content">
+                <span class="stat-label">Capacidad Máxima:</span>
+                <span class="stat-value">{{ parametroCaravana.capacidadMaximaCarga }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-group">
+            <h3 class="group-title">Estado</h3>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="stat-content">
+                <span class="stat-label">Dinero:</span>
+                <span class="stat-value">{{ parametroCaravana.dinero }}</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">❤️</div>
+              <div class="stat-content">
+                <span class="stat-label">Puntos de Vida:</span>
+                <span class="stat-value">{{ parametroCaravana.puntosVida }}</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">🛡️</div>
+              <div class="stat-content">
+                <span class="stat-label">Guardias:</span>
+                <span class="stat-value">{{ parametroCaravana.tieneGuardias ? 'Sí' : 'No' }}</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">⏱️</div>
+              <div class="stat-content">
+                <span class="stat-label">Tiempo Transcurrido:</span>
+                <span class="stat-value">{{ parametroCaravana.tiempoTranscurrido }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Image -->
+        <div class="game-image-container">
+          <img src="/mapa.png" alt="Mapa" class="game-image">
+        </div>
+      </main>
+    </div>
+  }
+</div>

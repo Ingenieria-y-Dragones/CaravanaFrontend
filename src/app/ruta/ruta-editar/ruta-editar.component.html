@@ -1,0 +1,14 @@
+<div>
+  @if (ruta) {
+    <form (ngSubmit)="onSubmit()" >
+      <label for="txtNombre">Nombre</label>
+      <input type="text" name="nombre" id="txtNombre"
+             [(ngModel)]="ruta.nombre">
+      <label for="txtDanio">Danio</label>
+      <input type="text" name="danio" id="txtDanio"
+             [(ngModel)]="ruta.danio">
+      <button type="submit">Save</button>
+    </form>
+    <p>{{ruta.nombre}}</p>
+  }
+</div>

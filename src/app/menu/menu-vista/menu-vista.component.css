@@ -1,0 +1,46 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #1a233a; /* Un tono de azul oscuro similar al fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.dragon-container {
+  margin-bottom: 30px;
+}
+
+.dragon-container img {
+  width: 150px; /* Ajusta el tamaño del dragón según sea necesario */
+  height: auto;
+}
+
+.start-button {
+  background-color: #37474f; /* Un tono grisáceo para el botón */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #546e7a;
+}

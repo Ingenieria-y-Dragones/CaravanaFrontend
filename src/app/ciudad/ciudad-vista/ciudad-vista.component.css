@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: #0a1f3c;
+  color: #f5f0e1;
+  overflow-x: hidden;
+}
+
+/* FONDO BASE + IMAGEN CASTILLO COMO CAPA INFERIOR */
+.background {
+  position: fixed; /* <- CORREGIDO: para que no se desplace con scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* <- mantiene la imagen detrás */
+  background-color: #0a1f3c; /* fondo azul oscuro */
+  pointer-events: none; /* <- no bloquea clics */
+}
+
+.background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/castle-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* HEADER Y ELEMENTOS SUPERIORES */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px; /* más compacto */
+  background-color: #f5f0e1;
+  color: #0a1f3c;
+  position: relative; /* <- NUEVO: asegura superposición */
+  z-index: 2;          /* <- NUEVO: lo pone encima del fondo */
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: -80px; /* más cerca del logo */
+}
+
+.time {
+  color: #4a0000;
+}
+
+.hp {
+  color: #0a1f3c;
+}
+
+.money {
+  color: #8b0000;
+}
+
+/* BARRA DE NAVEGACIÓN */
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-btn.active {
+  background-color: #8b0000;
+  color: white;
+}
+
+.nav-btn.sign {
+  background-color: #8b0000;
+  color: white;
+}
+
+.nav-btn.register {
+  background-color: #222;
+  color: white;
+}
+
+/* TÍTULO CENTRAL */
+.title-container {
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+  z-index: 1; /* <- NUEVO: para estar por encima del fondo */
+}
+
+.title {
+  font-size: 80px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title-top {
+  color: #f5f0e1;
+}
+
+.title-bottom {
+  color: #8b0000;
+  font-style: italic;
+}
+
+/* CONTENEDOR DE PANELES */
+.panels-container {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  z-index: 1; /* <- NUEVO: para que esté por encima del fondo */
+  padding: 0 20px;
+  margin-top: 20px;
+}
+
+/* PANEL */
+.panel {
+  background-color: rgba(245, 240, 225, 0.9);
+  border-radius: 5px;
+  width: 30%;
+  color: #333;
+  padding: 15px;
+}
+
+.panel-header {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.panel-subtitle {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.panel-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ITEMS DENTRO DE LOS PANELES */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.star {
+  font-size: 20px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.price.purchase {
+  color: #8b0000;
+}
+
+.price.sell {
+  color: #006400;
+}
+
+/* EFECTO HOVER */
+.item.hoverable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-comprar, .btn-vender {
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.btn-comprar {
+  background-color: #8b0000;
+}
+
+.btn-comprar:hover:not([disabled]) {
+  background-color: #a00000;
+}
+
+.btn-vender {
+  background-color: #006400;
+}
+
+.btn-vender:hover:not([disabled]) {
+  background-color: #007800;
+}
+
+.btn-comprar[disabled], .btn-vender[disabled] {
+  background-color: #999;
+  cursor: not-allowed;
+}
