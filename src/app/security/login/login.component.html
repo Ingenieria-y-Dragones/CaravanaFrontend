@@ -1,0 +1,27 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-container">
+        <div class="dragon-icon">🐉</div>
+      </div>
+      <h2>Login</h2>
+    </div>
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="txtEmail">
+          <span class="label-icon">📜</span>
+          Email
+        </label>
+        <input type="text" name="email" id="txtEmail" [(ngModel)]="loginDto.correo">
+      </div>
+      <div class="form-group">
+        <label for="txtPassword">
+          <span class="label-icon">🔒</span>
+          Password
+        </label>
+        <input type="password" name="password" id="txtPassword" [(ngModel)]="loginDto.contrasenia">
+      </div>
+      <button type="submit">Ingresar al Reino</button>
+    </form>
+  </div>
+</div>
